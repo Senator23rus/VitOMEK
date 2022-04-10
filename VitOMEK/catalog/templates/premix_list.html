@@ -1,0 +1,19 @@
+{% extends "base_temp.html" %}
+
+{% block content %}
+
+    <h1>Список типов Премиксов, добавленых в ДВ</h1>
+
+{% if premix %}
+<ul>
+    {% for premix in premix %}
+    <li><a>{{ premix.name }}</a>
+
+
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+    <p>В базе нет записей о типах Премиксов</p>
+{% endif %}
+{% endblock %}

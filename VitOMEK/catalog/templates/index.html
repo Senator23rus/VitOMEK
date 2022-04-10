@@ -1,0 +1,20 @@
+{% extends "base_temp.html" %}
+
+{% block content %}
+
+<h1>Главная</h1>
+
+    <p> Добро пожаловать в <em>VitOMEK</em>, это страничка работы с моделями и БД </p>
+
+<h2>Динамичный контент</h2>
+
+    <p>В базе данных VitOMEK следующее количество записей  </p>
+
+<ul>
+    <li><strong>Всего записей Сырья</strong> {{ num_materials }}</li>
+    <li><strong>Всего записей Блендов</strong> {{ num_blands }}</li>
+    <li><strong>Всего записей по типам Премиксов</strong> {{ num_premix }}</li>
+    <li><strong>Всего записей БВМК</strong> {{ num_BVMK }}</li>
+</ul>
+
+{% endblock %}

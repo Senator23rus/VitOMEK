@@ -1,0 +1,20 @@
+{% extends "base_temp.html" %}
+
+{% block content %}
+
+    <h1>Список Блендов, добавленых в ДВ</h1>
+
+{% if blands %}
+<ul>
+    {% for blands in blands %}
+    <li><a>
+                {{ blands.name }}</a>
+                ({{blands.type}})
+
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+    <p>В базе нет записей о Блендах</p>
+{% endif %}
+{% endblock %}
