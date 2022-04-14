@@ -2,29 +2,26 @@ from django.shortcuts import render
 from .models import *
 
 def index(request):
-    num_materials = Materials.objects.all().count()
-    num_blands = Blands.objects.all().count()
-    num_premix = TypeOfPremix.objects.all().count()
-    num_BVMK = bvmk.objects.all().count()
+    num_materials = TypeOfMaterials.objects.all().count()
+    num_animals = Animal.objects.all().count()
+    num_goods = Goods.objects.all().count()
+
 
     return render(request, 'index.html', context={'num_materials': num_materials,
-                                                  'num_blands': num_blands,
-                                                  'num_premix': num_premix,
-                                                  'num_BVMK': num_BVMK,
+                                                  'num_animals': num_animals,
+                                                  'num_goods': num_goods,
                                                   })
 
-def MaterialsListView(request):
-    materials = Materials.objects.all()
+def TypeOfMaterialsListView(request):
+    materials = TypeOfMaterials.objects.all()
     return render(request, 'materials_list.html', context={'materials': materials,})
 
-def BlandsListView(request):
-    blands = Blands.objects.all()
-    return render(request, 'blands_list.html', context={'blands': blands,})
+def GoodsListView(request):
+    goods = Goods.objects.all()
+    return render(request, 'goods_list.html', context={'goods': goods,})
 
-def TypePremixListView(request):
-    premix = TypeOfPremix.objects.all()
-    return render(request, 'premix_list.html', context={'premix': premix,})
+def AnimalListView(request):
+    animal = Animal.objects.all()
+    return render(request, 'animal_list.html', context={'animal': animal,})
 
-def BvmkListView(request):
-    bvmk = TypeOfPremix.objects.all()
-    return render(request, 'bvmk_list.html', context={'bvmk': bvmk,})
+

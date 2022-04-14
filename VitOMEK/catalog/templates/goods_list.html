@@ -4,17 +4,17 @@
 
     <h1>Список Блендов, добавленых в ДВ</h1>
 
-{% if blands %}
+{% if goods %}
 <ul>
-    {% for blands in blands %}
+    {% for goods in goods %}
     <li><a>
-                {{ blands.name }}</a>
-                ({{blands.type}})
+                {{ goods.name }}</a>
+                ({{goods.type}})
 
     </li>
     {% endfor %}
 </ul>
 {% else %}
-    <p>В базе нет записей о Блендах</p>
+    <p>В базе нет записей о Товарах</p>
 {% endif %}
 {% endblock %}

@@ -3,8 +3,8 @@ from catalog import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('materials/', views.MaterialsListView, name='materials'),
-    path('blands/', views.BlandsListView, name='blands'),
-    path('premix/', views.TypePremixListView, name='premix'),
-    path('bvmk/', views.BvmkListView, name='bvmk'),
+    path('materials/', views.TypeOfMaterialsListView, name='materials'),
+    path('goods/', views.GoodsListView, name='goods'),
+    path('animals/', views.AnimalListView, name='animals'),
+
 ]

@@ -2,153 +2,64 @@ from django.db import models
 from django.urls import reverse
 
 class TypeOfGoods(models.Model):
-    name = models.CharField(max_length=200, help_text="Введите тип Продуктовой линейки", verbose_name="Продуктовая линейка")
-    def __str__(self):
-        return self.name
-
-class TypeOfPremix(models.Model):
-    name = models.CharField(max_length=200, help_text="Введите тип Премикса", verbose_name="Тип Премикса")
+    name = models.CharField(max_length=200, help_text="Введите Название Категории товара", verbose_name="Категория товара")
+    animal = models.ForeignKey('Animal', on_delete=models.CASCADE, help_text="Выбрать Животное", verbose_name="Животное", null=True)
+    material = models.ForeignKey('TypeOfMaterials', on_delete=models.CASCADE, help_text="Выбрать Сырьё", verbose_name="Сырьё", null=True)
     objects = models.Manager()
-    def __str__(self):
-        return self.name
 
-class TypeOfBlands(models.Model):
-    name = models.CharField(max_length=200, help_text="Введите тип Бленда", verbose_name="Тип Бленда")
     def __str__(self):
-        return self.name
+        return '%s %s %s' % (self.name, self.animal, self.material)
 
 class TypeOfMaterials(models.Model):
     name = models.CharField(max_length=200, help_text="Введите тип Сырья", verbose_name="Тип Сырья")
+    packaging = models.ForeignKey('TypeOfPackaging', on_delete=models.CASCADE, help_text="Выбрать Фасовку", verbose_name="Фасовка", null=True)
+    objects = models.Manager()
+
     def __str__(self):
-        return self.name
+        return '%s %s' % (self.name, self.packaging)
 
 class TypeOfPackaging(models.Model):
-    name = models.CharField(max_length=200, help_text="Введите тип Фасовки", verbose_name="Тип Фасовки")
-    def __str__(self):
-        return self.name
-
-class TypeOfPremixForBroiler(models.Model):
-    name = models.CharField(max_length=200, help_text="Введите тип Премикса для Бройлера", verbose_name="Тип Премикса Бройлер")
-    def __str__(self):
-        return self.name
-
-
-class TypeOfPremixForPigs(models.Model):
-    name = models.CharField(max_length=200, help_text="Введите тип Премикса для Свиней",
-                            verbose_name="Тип Премикса Свиньи")
+    name = models.CharField(max_length=200, help_text="Введите название Фасовки", verbose_name="Фасовка")
+    type = models.CharField(max_length=200, help_text="Введите тип Фасовки", verbose_name="Тип Фасовки", default=1)
+    material = models.CharField(max_length=200, help_text="Введите материал Фасовки", verbose_name="Материал Фасовки", default=0)
+    weight = models.DecimalField(decimal_places=2, max_digits=2, help_text="Введите вес Фасовки", verbose_name="Вес Фасовки", default=0)
+    objects = models.Manager()
 
     def __str__(self):
-        return self.name
+        return '%s %s %s %s' % (self.name, self.type, self.material, self.weight)
 
-class TypeOfPremixForPiglets(models.Model):
-    name = models.CharField(max_length=200, help_text="Введите тип Премикса для Поросят",
-                            verbose_name="Тип Премикса Поросята")
-
-    def __str__(self):
-        return self.name
 
 class StatusOfGoods(models.Model):
     name = models.CharField(max_length=20, help_text="Введите статус товара", verbose_name="Статус товара")
+    objects = models.Manager()
     def __str__(self):
         return self.name
 
 
-class Materials(models.Model):
-    name = models.CharField(max_length=200, help_text="Введите название сырья", verbose_name="Название сырья")
-    type = models.ForeignKey('TypeOfMaterials', on_delete=models.CASCADE, help_text="Выбрать тип сырья", verbose_name="тип сырья", null=True)
-    type_of_goods = models.ForeignKey('TypeOfGoods', on_delete=models.CASCADE, help_text="Выбрать тип продукта", verbose_name="Тип продукта", null=True)
-    type_of_packing = models.ForeignKey('TypeOfPackaging', on_delete=models.CASCADE, help_text="Выбрать тип фасовки", verbose_name="Тип фасовки", null=True)
-    status = models.ForeignKey('StatusOfGoods', on_delete=models.CASCADE, help_text="Выбрать статус", verbose_name="Статус", null=True)
-    photo = models.ImageField(default=1, upload_to='images/materials/', help_text="разместите фото")
-    summary = models.TextField(max_length=1000, help_text="Введите описание сырья", verbose_name="Описание сырья")
-    price = models.CharField(max_length=100, help_text="Введите цену", verbose_name="Цена")
+class Animal(models.Model):
+    name = models.CharField(max_length=200, help_text="Введите вид животного", verbose_name="Животное")
+    age = models.CharField(max_length=10, help_text="Введите возраст животного", verbose_name="Возраст")
+    life_stage = models.CharField(max_length=200, help_text="Введите жизненный период животного", verbose_name="Период Животного", null=True)
+    weight_animal = models.DecimalField(decimal_places=2, max_digits=2, help_text="Введите вес Животного", verbose_name="Вес Животного", null=True)
     objects = models.Manager()
 
     def __str__(self):
-        return '%s %s %s' % (self.name, self.type, self.price)
+        return '%s %s %s %s' % (self.name, self.age, self.life_stage, self.weight_animal)
 
-class Blands(models.Model):
-    name = models.CharField(max_length=200, help_text="Введите название бленда", verbose_name="Название бленда")
-    type = models.ForeignKey('TypeOfBlands', on_delete=models.CASCADE, help_text="Выбрать тип бленда", verbose_name="тип бленда", null=True)
-    type_of_goods = models.ForeignKey('TypeOfGoods', on_delete=models.CASCADE, help_text="Выбрать тип продукта", verbose_name="Тип продукта", null=True)
-    type_of_packing = models.ForeignKey('TypeOfPackaging', on_delete=models.CASCADE, help_text="Выбрать тип фасовки", verbose_name="Тип фасовки", null=True)
-    status = models.ForeignKey('StatusOfGoods', on_delete=models.CASCADE, help_text="Выбрать статус", verbose_name="Статус", null=True)
-    photo = models.ImageField(default=1, upload_to='images/blands/', help_text="разместите фото", null=True)
+class Goods(models.Model):
+    name = models.CharField(max_length=200, help_text="Введите название Товара", verbose_name="Название Товара")
+    packaging = models.ForeignKey('TypeOfPackaging', on_delete=models.CASCADE, help_text="Выбрать Фасовку", verbose_name="Фасовка", null=True)
+    price = models.CharField(max_length=100, help_text="Введите цену", verbose_name="Цена")
+    photo = models.ImageField(default=1, upload_to='images/goods/', help_text="разместите фото", null=True)
     summary = models.TextField(max_length=1000, help_text="Введите описание бленда", verbose_name="Описание бленда")
-    price = models.CharField(max_length=100, help_text="Введите цену", verbose_name="Цена")
-    objects = models.Manager()
-
-    def __str__(self):
-        return '%s %s %s' % (self.name, self.type, self.price)
-
-class PremixForBroiler(models.Model):
-    name = models.CharField(max_length=200, help_text="Введите название премикса для Бройлеров", verbose_name="Название премикса для Бройлеров")
-    type_of_premix = models.ForeignKey('TypeOfPremix', on_delete=models.CASCADE, help_text="Выбрать тип премикса", verbose_name="тип премикса", null=True)
-    type = models.ForeignKey('TypeOfPremixForBroiler', on_delete=models.CASCADE, help_text="Выбрать тип премикса для Бройлеров", verbose_name="тип премикса для Бройлеров", null=True)
+    animal = models.ForeignKey('Animal', on_delete=models.CASCADE, help_text="Выберите Животное", verbose_name="Животное", null=True)
+    # animal_age = models.ForeignKey('Animal', on_delete=models.CASCADE, help_text="Выберите возраст Животного", verbose_name="Возраст Животного", null=True)
+    # animal_life_stage = models.ForeignKey('Animal', on_delete=models.CASCADE, help_text="Выберите период Животного", verbose_name="Период Животного", null=True)
+    # animal_weight_animal = models.ForeignKey('Animal', on_delete=models.CASCADE, help_text="Выберите вес Животного", verbose_name="Вес Животного", null=True)
     type_of_goods = models.ForeignKey('TypeOfGoods', on_delete=models.CASCADE, help_text="Выбрать тип продукта", verbose_name="Тип продукта", null=True)
-    type_of_packing = models.ForeignKey('TypeOfPackaging', on_delete=models.CASCADE, help_text="Выбрать тип фасовки", verbose_name="Тип фасовки", null=True)
-    status = models.ForeignKey('StatusOfGoods', on_delete=models.CASCADE, help_text="Выбрать статус", verbose_name="Статус", null=True)
-    photo = models.ImageField(default=1, upload_to='images/premix/', help_text="разместите фото")
-    summary = models.TextField(max_length=1000, help_text="Введите описание премикса", verbose_name="Описание премикса")
-    price = models.CharField(max_length=100, help_text="Введите цену", verbose_name="Цена")
+    status = models.ForeignKey('StatusOfGoods', on_delete=models.CASCADE, help_text="Выбрать статус Товара", verbose_name="Статус Товара", null=True)
     objects = models.Manager()
 
     def __str__(self):
-        return '%s %s %s' % (self.name, self.type, self.price)
+        return '%s %s %s' % (self.name, self.animal, self.price)
 
-class PremixForPig(models.Model):
-    name = models.CharField(max_length=200, help_text="Введите название премикса для Свиней", verbose_name="Название премикса для Свиней")
-    type_of_premix = models.ForeignKey('TypeOfPremix', on_delete=models.CASCADE, help_text="Выбрать тип премикса", verbose_name="тип премикса", null=True)
-    type_premix_for_pigs = models.ForeignKey('TypeOfPremixForPigs', on_delete=models.CASCADE, help_text="Выбрать тип премикса для Свиней", verbose_name="тип премикса для Свиней", null=True)
-    type_of_goods = models.ForeignKey('TypeOfGoods', on_delete=models.CASCADE, help_text="Выбрать тип продукта", verbose_name="Тип продукта", null=True)
-    type_of_packing = models.ForeignKey('TypeOfPackaging', on_delete=models.CASCADE, help_text="Выбрать тип фасовки", verbose_name="Тип фасовки", null=True)
-    status = models.ForeignKey('StatusOfGoods', on_delete=models.CASCADE, help_text="Выбрать статус", verbose_name="Статус", null=True)
-    photo = models.ImageField(default=1, upload_to='images/premix/', help_text="разместите фото")
-    summary = models.TextField(max_length=1000, help_text="Введите описание премикса", verbose_name="Описание премикса")
-    price = models.CharField(max_length=100, help_text="Введите цену", verbose_name="Цена")
-    objects = models.Manager()
-
-    def __str__(self):
-        return '%s %s %s' % (self.name, self.type_of_premix, self.price)
-
-class PremixForPiglets(models.Model):
-    name = models.CharField(max_length=200, help_text="Введите название премикса для Поросят", verbose_name="Название премикса для Поросят")
-    type_of_premix = models.ForeignKey('TypeOfPremix', on_delete=models.CASCADE, help_text="Выбрать тип премикса", verbose_name="тип премикса", null=True)
-    type_premix_for_piglets = models.ForeignKey('TypeOfPremixForPiglets', on_delete=models.CASCADE, help_text="Выбрать тип премикса для Поросят", verbose_name="тип премикса для Поросят", null=True)
-    type_of_goods = models.ForeignKey('TypeOfGoods', on_delete=models.CASCADE, help_text="Выбрать тип продукта", verbose_name="Тип продукта", null=True)
-    type_of_packing = models.ForeignKey('TypeOfPackaging', on_delete=models.CASCADE, help_text="Выбрать тип фасовки", verbose_name="Тип фасовки", null=True)
-    status = models.ForeignKey('StatusOfGoods', on_delete=models.CASCADE, help_text="Выбрать статус", verbose_name="Статус", null=True)
-    photo = models.ImageField(default=1, upload_to='images/premix/', help_text="разместите фото")
-    summary = models.TextField(max_length=1000, help_text="Введите описание премикса", verbose_name="Описание премикса")
-    price = models.CharField(max_length=100, help_text="Введите цену", verbose_name="Цена")
-    objects = models.Manager()
-
-    def __str__(self):
-        return '%s %s %s' % (self.name, self.type_of_premix, self.price)
-
-class PremixForCows(models.Model):
-    name = models.CharField(max_length=200, help_text="Введите название премикса для KPC", verbose_name="Название премикса для KPC")
-    type_of_premix = models.ForeignKey('TypeOfPremix', on_delete=models.CASCADE, help_text="Выбрать тип премикса", verbose_name="тип премикса", null=True)
-    type_of_goods = models.ForeignKey('TypeOfGoods', on_delete=models.CASCADE, help_text="Выбрать тип продукта", verbose_name="Тип продукта", null=True)
-    type_of_packing = models.ForeignKey('TypeOfPackaging', on_delete=models.CASCADE, help_text="Выбрать тип фасовки", verbose_name="Тип фасовки", null=True)
-    status = models.ForeignKey('StatusOfGoods', on_delete=models.CASCADE, help_text="Выбрать статус", verbose_name="Статус", null=True)
-    photo = models.ImageField(default=1, upload_to='images/premix/', help_text="разместите фото")
-    summary = models.TextField(max_length=1000, help_text="Введите описание премикса", verbose_name="Описание премикса")
-    price = models.CharField(max_length=100, help_text="Введите цену", verbose_name="Цена")
-    objects = models.Manager()
-
-    def __str__(self):
-        return '%s %s %s' % (self.name, self.type_of_premix, self.price)
-
-class bvmk(models.Model):
-    name = models.CharField(max_length=200, help_text="Введите название БВМК", verbose_name="Название БВМК")
-    type_of_goods = models.ForeignKey('TypeOfGoods', on_delete=models.CASCADE, help_text="Выбрать тип продукта", verbose_name="Тип продукта", null=True)
-    type_of_packing = models.ForeignKey('TypeOfPackaging', on_delete=models.CASCADE, help_text="Выбрать тип фасовки", verbose_name="Тип фасовки", null=True)
-    status = models.ForeignKey('StatusOfGoods', on_delete=models.CASCADE, help_text="Выбрать статус", verbose_name="Статус", null=True)
-    photo = models.ImageField(default=1, upload_to='images/premix/', help_text="разместите фото")
-    summary = models.TextField(max_length=1000, help_text="Введите описание ", verbose_name="Описание")
-    price = models.CharField(max_length=100, help_text="Введите цену", verbose_name="Цена")
-    objects = models.Manager()
-
-    def __str__(self):
-        return '%s  %s' % (self.name, self.price)

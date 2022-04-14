@@ -1,0 +1,19 @@
+{% extends "base_temp.html" %}
+
+{% block content %}
+
+    <h1>Список Животных, добавленых в ДВ</h1>
+
+{% if animals %}
+<ul>
+    {% for animals in animals %}
+    <li><a>{{ animals.name }}</a>
+
+
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+    <p>В базе нет записей о Животных</p>
+{% endif %}
+{% endblock %}
