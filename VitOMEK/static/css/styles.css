@@ -1,0 +1,235 @@
+/* Сброс/Reset */
+h1,h2,h3,h4,h5,h6,div,body,p,ul,ol,li{
+    padding: 0;
+    margin: 0
+}
+
+ul,ol{
+	list-style: none
+}
+
+body {
+  background-size: cover;
+  font-family: 'Noto Sans', sans-serif;
+  background: #D7D9E1;
+}
+
+/* меню */
+.container-menu{
+	width: 100%;
+	max-width: 1920px;
+	height: 220px;
+	background-image: linear-gradient(to right, #005624, #009C41);
+	margin: 0 auto;
+} 
+
+.menu-main{
+	display: flex;
+	justify-content: center;
+	padding-bottom: 17px
+	
+}
+
+.menu-logo{
+	padding: 25px 78px 0 78px;
+}
+
+.menu-search{
+	padding-right: 65px;
+	padding-top: 50px;
+}
+
+.menu-search input{
+	width: 680px;
+	height: 60px;
+	background: #D7D9E1;
+	border-radius: 16px;
+	font-size: 40px;
+	font: Open Sans;
+	
+}
+
+.menu-icons{
+	display: flex;
+	padding-top: 50px;
+}
+
+.menu-icons p{
+	font: Open Sans;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 19.07px;
+	color: #fff
+}
+
+.isolation{
+	padding-right: 65px
+}
+
+.delivery{
+	padding-right: 62px;
+}
+
+.isolation-img, .delivery-img, .shopping-img{
+	text-align: center
+}
+
+.menu-down{
+	display: flex;
+	justify-content: center;
+}
+
+.down-item{
+	width: 332px;
+	height: 60px;
+	border-radius: 16px
+}
+
+.down-item p{
+	text-align: center;
+	color: #fff;
+	font: Open Sans;
+	font-weight: 600;
+	font-size: 24px;
+	line-height: 32.68px;
+	margin-top: 10px;
+}
+
+.gap-left{
+	width: 275px;
+	height: 60px;
+	background: #D7D9E1;
+	border-radius: 0 16px 0 0;
+}
+
+.gap{
+	width: 16px;
+	height: 60px;
+	background: #D7D9E1;
+	border-radius: 16px 16px 0 0;
+}
+
+.gap-right{
+	width: 275px;
+	height: 60px;
+	background: #D7D9E1;
+	border-radius: 16px 0 0 0;
+}
+/* меню */
+
+.container{
+	width: 100%;
+	max-width: 1472px;
+	margin: 0 auto;
+}
+
+/* портфолио */
+.portfolio{
+	padding-top: 40px;
+}
+
+.portfolio-items{
+	display: flex;
+	justify-content: center;
+}
+
+.portfolio-item-center{
+	padding: 0 16px 0 16px;
+}
+/* портфолио */
+
+
+/* слайд */
+.slide{
+	padding-top: 160px;
+	padding-bottom: 92px
+}
+.slide-items{
+	display: flex;
+	justify-content: center;
+}
+/* слайд */
+
+
+/* рекомендация */
+.recommendation-items{
+	display: flex;
+	justify-content: center;
+}
+
+.recommendation h2{
+	font: Open Sans;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 24px;
+	line-height: 33px;
+	text-align: center;
+	padding-bottom: 14px
+}
+
+.recommendation-item-left{	
+	background-color: white;
+	border-radius: 16px;
+	text-align: center;
+	margin-right: 8px
+}
+
+.recommendation-item{
+	background-color: white;
+	border-radius: 16px;
+	text-align: center;
+	margin: 0 8px 0 8px;
+}
+
+.recommendation-item-right{
+	margin-left: 8px;
+	background-color: white;
+	border-radius: 16px;
+	text-align: center;
+}
+
+.item-photo{
+	padding: 47px 81px 0 81px;
+	
+}
+
+.item-text{
+	padding: 10px 10px 10px 32px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.item-text p{
+	font: Open Sans;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 12px;
+	line-height: 16px;
+	display: flex;
+	padding-bottom: 10px
+}
+
+.item-basket img{
+	padding-top: 45px
+}
+
+.btn-recommendation{
+	padding-top: 32px;
+	text-align: center;
+	padding-bottom: 199px;
+}
+
+.btn-recommendation a{
+	background: #F3DB00;
+    color: #414141;
+    text-align: center;
+    padding: 7px 36px 10px 36px;
+    text-decoration: none;
+    font: Open Sans;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 24px;
+	line-height: 33px;
+	border-radius: 8px;
+}
+/* рекомендация */

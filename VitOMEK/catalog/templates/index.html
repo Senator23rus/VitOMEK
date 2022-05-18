@@ -1,20 +1,238 @@
-{% extends "base_temp.html" %}
+<!DOCTYPE html>
+<html lang="ru">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Инициализация сайта -->
+    <title>FEED MARKET</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
-{% block content %}
+	
+</head>
 
-<h1>Главная</h1>
+<body>
 
-    <p> Добро пожаловать в <em>VitOMEK</em>, это страничка работы с моделями и БД </p>
+<!-- меню -->
+<header class="site-header">
+	<div class="container-menu">				
+		<div class="menu">					
+			<div class="menu-main">
+				<div class="menu-logo">
+					<img src="{% static 'images/4.png' %}">
+				</div>
 
-<h2>Динамичный контент</h2>
+				<div class="menu-search">								
+						<input type="text" class="search">					
+				</div>
 
-    <p>В базе данных VitOMEK следующее количество записей  </p>
+				<div class="menu-icons">
+				
+					<div class="isolation">
+						<div class="isolation-img">
+							<img src="{% static 'images/free-icon-isolation-2779751.png' %}">
+						</div>
+						<div class="isolation-p">
+							<p>Войти</p>
+						</div>						
+					</div>
+					
+					<div class="delivery">
+						<div class="delivery-img">
+							<img src="{% static 'images/free-icon-delivery-truck-5363564.png' %}">
+						</div>
+						<div class="delivery-p">
+							<p>Заказы</p>
+						</div>
+					</div>
+					
+					<div class="shopping">
+						<div class="shopping-img">
+							<img src="{% static 'images/premium-icon-shopping-cart-4675218.png' %}">
+						</div>
+						<div class="shopping-p">
+							<p>Корзина</p>
+						</div>
+					</div>					
+				</div>													
+			</div>
+			
+			<div class="menu-down">
+			
+				<div class="gap-left">
+					
+				</div>
+			
+				<div class="down-item">
+					<p>Комбикорм</p>
+				</div>
+				
+				<div class="gap">
+					
+				</div>
+				
+				<div class="down-item">
+					<p>Премиксы</p>							
+				</div>
+				
+				<div class="gap">
+					
+				</div>
+				
+				<div class="down-item">
+					<p>БВМК</p>							
+				</div>
+				
+				<div class="gap">
+					
+				</div>
+				
+				<div class="down-item">
+					<p>Сырье</p>							
+				</div>
+				
+				<div class="gap-right">
+					
+				</div>
+				
+							
+			</div>											
+		</div>	
+	</div>			
+</header>
+<!-- меню -->
 
-<ul>
-    <li><strong>Всего записей Сырья</strong> {{ num_materials }}</li>
-    <li><strong>Всего записей Животных</strong> {{ num_animals }}</li>
-    <li><strong>Всего записей по Товарам</strong> {{ num_goods }}</li>
 
-</ul>
+<!-- портфолио -->
+<div class="portfolio">
+	<div class="container">	
+			<div class="portfolio-items">
+			
+				<div class="portfolio-item">
+					<img src="{% static 'images/Rectangle 1870.png' %}">
+				</div>
+				
+				<div class="portfolio-item-center">
+					<img src="{% static 'images/Rectangle 1869.png' %}">
+				</div>	
+				
+				<div class="portfolio-item">
+					<img src="{% static 'images/Rectangle 1871.png' %}">
+				</div>
+				
+			</div>
+	</div>
+</div>	
+<!-- портфолио -->
 
-{% endblock %}
+<!-- слайд -->
+<div class="slide">
+        <div class="container">
+			<div class="slide-items">
+				<img src="{% static 'images/Rectangle 1872.png' %}">
+			</div>	
+        </div>
+</div>
+<!-- слайд -->
+
+
+<!-- рекомендация -->
+<div class="recommendation">
+	<div class="container">	
+		<h2>FEED-MARKET рекомендует</h2>
+			<div class="recommendation-items">
+			
+				<div class="recommendation-item-left">
+				
+					<div class="item-photo">
+						<img src="{% static 'images/Vitomek-PreMix-Pigs 1.png' %}">
+					</div>
+					
+					<div class="item-text">
+						<div class="item-p">
+							<p>10 000 руб.</p>	
+							<p>Премикс VITOMEK</p>
+							<p>Свиноматки лактирующие (СК-1)</p>
+							<p>10 кг</p>
+						</div>
+						
+						<div class="item-basket">
+							<img src="{% static 'images/Property 1=Variant2.png' %}">
+						</div>
+					</div>
+					
+					
+				</div>
+				
+				<div class="recommendation-item">
+					<div class="item-photo">
+						<img src="{% static 'images/Vitomek-PreMix-Layers 1.png' %}">
+					</div>
+					
+					<div class="item-text">
+						<div class="item-p">
+							<p>10 500 руб.</p>	
+							<p>Премикс VITOMEK</p>
+							<p>Престартер (СК-3)</p>
+							<p>10 кг</p>
+						</div>
+						
+						<div class="item-basket">
+							<img src="{% static 'images/Property 1=Variant2.png' %}">
+						</div>
+					</div>										
+				</div>	
+				
+				<div class="recommendation-item">
+					<div class="item-photo">
+						<img src="{% static 'images/Vitomek-PreMix-Ruminant 1.png' %}">
+					</div>
+					
+					<div class="item-text">
+						<div class="item-p">
+							<p>9 000 руб.</p>	
+							<p>Премикс VITOMEK</p>
+							<p>Откорм первого периода (СК-6)</p>
+							<p>10 кг</p>
+						</div>
+						
+						<div class="item-basket">
+							<img src="{% static 'images/Property 1=Variant2.png' %}">
+						</div>
+					</div>											
+				</div>
+				
+				<div class="recommendation-item-right">
+					<div class="item-photo">
+						<img src="{% static 'images/Vitomek-PreMix-Poultry 1.png' %}">
+					</div>
+					
+					<div class="item-text">
+						<div class="item-p">
+							<p>8 750 руб.</p>	
+							<p>Премикс VITOMEK</p>
+							<p>Гроуэр (СК-5)</p>
+							<p>10 кг</p>
+						</div>
+						
+						<div class="item-basket">
+							<img src="{% static 'images/Property 1=Variant2.png' %}">
+						</div>
+					</div>										
+				</div>
+				
+			</div>
+			
+			<div class="btn-recommendation">
+					<a href="#">Перейти</a>
+			</div>
+	</div>
+</div>	
+<!-- рекомендация -->
+
+</body>
+
+</html>
