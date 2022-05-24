@@ -12,16 +12,11 @@ def index(request):
                                                   'num_goods': num_goods,
                                                   })
 
-def TypeOfMaterialsListView(request):
-    materials = TypeOfMaterials.objects.all()
-    return render(request, 'materials_list.html', context={'materials': materials,})
+def Premix(request):
+    # materials = Premix.objects.all()
+    return render(request, 'premixes.html')
 
-def GoodsListView(request):
-    goods = Goods.objects.all()
-    return render(request, 'goods_list.html', context={'goods': goods,})
-
-def AnimalListView(request):
-    animal = Animal.objects.all()
-    return render(request, 'animal_list.html', context={'animal': animal,})
+def Sk1(request):
+    return render(request, 'sk1.html')
 
 
