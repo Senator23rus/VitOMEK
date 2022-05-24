@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Инициализация сайта -->
+    <title>FEED-MARKET</title>
+
+
+{% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'vendors/slick/slick.css' %}"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'vendors/slick/slick-theme.css' %}"/>
+</head>
+
+<body>
+
+<!-- меню -->
+<header class="site-header">
+	<div class="container-menu">
+		<div class="menu">
+			<div class="menu-main">
+				<div class="menu-logo">
+					<img src="{% static 'images/4.png' %}">
+				</div>
+
+				<div class="menu-search">
+						<input type="text" class="search">
+				</div>
+
+				<div class="menu-icons">
+
+					<div class="isolation">
+						<div class="isolation-img">
+							<img src="{% static 'images/free-icon-isolation-2779751.png' %}">
+						</div>
+						<div class="isolation-p">
+							<p>Войти</p>
+						</div>
+					</div>
+
+					<div class="delivery">
+						<div class="delivery-img">
+							<img src="{% static 'images/free-icon-delivery-truck-5363564.png' %}">
+						</div>
+						<div class="delivery-p">
+							<p>Заказы</p>
+						</div>
+					</div>
+
+					<div class="shopping">
+						<div class="shopping-img">
+							<img src="{% static 'images/premium-icon-shopping-cart-4675218.png' %}">
+						</div>
+						<div class="shopping-p">
+							<p>Корзина</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="menu-down">
+
+				<div class="gap-left">
+
+				</div>
+
+				<div class="down-item">
+					<p><a href="">Комбикорм</a></p>
+				</div>
+
+				<div class="gap">
+
+				</div>
+
+				<div class="down-item">
+					<p><a href="{% url 'premix' %}">Премиксы</a></p>
+				</div>
+
+				<div class="gap">
+
+				</div>
+
+				<div class="down-item">
+					<p><a href="">БВМК</a></p>
+				</div>
+
+				<div class="gap">
+
+				</div>
+
+				<div class="down-item">
+					<p><a href="">Сырье</a></p>
+				</div>
+
+				<div class="gap-right">
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</header>
+{% block content %}
+
+
+{% endblock %}
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="{% static 'vendors/slick/slick.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>
