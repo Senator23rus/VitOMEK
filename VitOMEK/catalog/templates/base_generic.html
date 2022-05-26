@@ -38,7 +38,13 @@
 							<img src="{% static 'images/free-icon-isolation-2779751.png' %}">
 						</div>
 						<div class="isolation-p">
-							<p><a href="{% url 'login' %}">Войти</a></p>
+<!--							<p><a href="{% url 'login' %}">Войти</a></p>-->
+							{% if user.is_authenticated %}
+            					<p>{{ user.get_username }}</p>
+            					<p><a href="{% url 'logout'%}?next={{ request.path }}" style="text-decoration: none; color: #FCFCFC">Выйти</a></p>
+							{% else %}
+            					<p><a href="{% url 'login'%}?next={{ request.path }}" style="text-decoration: none; color: #FCFCFC">Войти</a></p>
+        					{% endif %}
 						</div>
 					</div>
 
