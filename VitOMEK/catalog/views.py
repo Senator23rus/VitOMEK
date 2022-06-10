@@ -1,14 +1,18 @@
 from django.shortcuts import render
 from .models import *
+from django.views import generic
+from .permissions import SalesmanPermissionsMixin
 
 def index(request):
 
     return render(request, 'index.html')
 
-def Premix(request):
-    return render(request, 'premixes.html')
-
-def Sk1(request):
-    return render(request, 'sk1.html')
+class PremixListView(generic.ListView):
+    model = ProductPremix
 
 
+class ProductPremixDetalView(generic.DetailView):
+    model = ProductPremix
+
+# class SalesmanProductPremixDetalView(SalesmanPermissionsMixin, generic.DetailView):
+#     model = ProductPremix

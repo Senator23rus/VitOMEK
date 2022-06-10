@@ -34,14 +34,16 @@
 				<div class="menu-icons">
 
 					<div class="isolation">
-						<div class="isolation-img">
-							<img src="{% static 'images/free-icon-isolation-2779751.png' %}">
-						</div>
+
 						<div class="isolation-p">
-<!--							<p><a href="{% url 'login' %}">Войти</a></p>-->
+
+							<div class="isolation-img">
+								<img src="{% static 'images/free-icon-isolation-2779751.png' %}">
+							</div>
 							{% if user.is_authenticated %}
 
-            					<p>{{ user.get_username }} (<a href="{% url 'logout'%}?next={{ request.path }}" style="text-decoration: none; color: #FCFCFC">Выйти)</a></p>
+
+            					<p>{{ user.get_username }} <a href="{% url 'logout'%}?next={{ request.path }}" style="text-decoration: none; color: #FCFCFC">Выйти</a></p>
 							{% else %}
             					<p><a href="{% url 'login'%}?next={{ request.path }}" style="text-decoration: none; color: #FCFCFC">Войти</a></p>
         					{% endif %}
@@ -83,7 +85,7 @@
 				</div>
 
 				<div class="down-item">
-					<p><a href="{% url 'premix' %}">Премиксы</a></p>
+					<p><a href="{% url 'premix-list' %}">Премиксы</a></p>
 				</div>
 
 				<div class="gap">
