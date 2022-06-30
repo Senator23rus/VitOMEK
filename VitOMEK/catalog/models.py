@@ -1,40 +1,81 @@
+from datetime import datetime
+
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 
 
 class Good(models.Model):
+    name = models.CharField(max_length=200, help_text="Введите название Товара", verbose_name="Название Товара", default=0)
+
+    image = models.IntegerField(help_text="Введите картинку продукта", verbose_name="Картинка", default=0)
+
     product = models.ForeignKey('Product', on_delete=models.CASCADE, help_text="Выберете продукт",
                                 verbose_name="Продукт", null=True)
     animal = models.ForeignKey('Animal', on_delete=models.CASCADE, help_text="Выберите Животное",
                                verbose_name="Животное", null=True, blank=True)
+    date = models.DateField(help_text="Введите дату добавления товара", verbose_name="Дата добавления товара", null=True, blank=True)
 
     price = models.DecimalField(decimal_places=2, max_digits=10, help_text="Введите цену ", verbose_name="Цена",
                                 default=0)
 
     user = models.ForeignKey(User, verbose_name='Пользователь', on_delete=models.CASCADE)
 
+    verbose_name = "Товар"
+    verbose_name_plural = "Товары"
+
     objects = models.Manager()
 
     def __str__(self):
-        return '%s %s' % (self.product, self.animal)
+        return '%s %s %s %s' % (self.name, self.product, self.animal, self.price)
 
 
 # Продукты
 class Product(models.Model):
-    product_type = models.ForeignKey('TypeProduct', on_delete=models.CASCADE, help_text="Выберете тип продукта",
-                                     verbose_name="Тип продукта", null=True)
 
-    country = models.ForeignKey('Country', on_delete=models.CASCADE, help_text="Введите страну изготовителя",
+    industry = models.ForeignKey('Industry', on_delete=models.CASCADE, help_text="Выберите Отрасль",
+                                 verbose_name="Отрасль", null=True)
+
+    country = models.ForeignKey('Country', on_delete=models.CASCADE, help_text="Выберите страну изготовителя",
                                 verbose_name="Страна изготовитель", null=True)
+    weight = models.IntegerField(help_text="Выберите вес продукта",
+                               verbose_name="Вес продукта", null=True)
+    maker = models.CharField(max_length=200, help_text="Введите Производителя", verbose_name="Производитель", null=True, blank=True)
+
     objects = models.Manager()
 
     def __str__(self):
-        return '%s %s' % (self.product_type, self.country)
+        return '%s %s %s %s' % (self.industry, self.country, self.weight, self.maker)
 
 
-class TypeProduct(models.Model):
-    name = models.CharField(max_length=200, help_text="Выберете тип продукта", verbose_name="Тип продукта")
+class Premix(Product):
+    class Meta:
+        verbose_name = "Премикс"
+        verbose_name_plural = "Премикс"
+
+
+class Materials(Product):
+    materials_type = models.ForeignKey('TypeMaterial', on_delete=models.CASCADE, help_text="Выберите тип Сырья",
+                                       verbose_name="Сырьё", null=True, blank=True)
+
+    class Meta:
+        verbose_name = "Сырьё"
+        verbose_name_plural = "Сырьё"
+
+
+class Kombikorm(Product):
+    class Meta:
+        verbose_name = "Комбикорм"
+        verbose_name_plural = "Комбикорм"
+
+class BVMK(Product):
+    class Meta:
+        verbose_name = "БВМК"
+        verbose_name_plural = "БВМК"
+
+
+class TypeMaterial(models.Model):
+    name = models.CharField(max_length=200, help_text="Введите тип сырья", verbose_name="Тип Сырья")
     objects = models.Manager()
 
     def __str__(self):
@@ -49,20 +90,28 @@ class Country(models.Model):
         return '%s' % (self.name)
 
 
+
+
 # Животные
 
 class Animal(models.Model):
     industry = models.ForeignKey('Industry', on_delete=models.CASCADE, help_text="Выберите Отрасль",
                                  verbose_name="Отрасль", null=True)
-    animal_weight = models.ForeignKey('AnimalWeight', on_delete=models.CASCADE, help_text="Выберите вес Животного",
-                                      verbose_name="Вес", null=True)
-    animal_age = models.ForeignKey('Age', on_delete=models.CASCADE, help_text="Введите возраст животного",
-                                   verbose_name="Возраст животного", null=True)
+    animal = models.CharField(max_length=200, help_text="Введите описание Животного",
+                              verbose_name="Описание Животного", null=True, blank=True)
+
+    animal_age_min = models.IntegerField(help_text="Введите минимальный Возраст",
+                                 verbose_name="Минимальный Возраст", null=True)
+    animal_age_max = models.IntegerField(help_text="Введите максимальный Возраст",
+                                         verbose_name="Максимальный Возраст", null=True)
+    weight_min = models.IntegerField(help_text="Выберите вес Животного (от)",
+                                 verbose_name="Минимальный вес Животного", null=True)
+    weight_max = models.IntegerField(help_text="Выберите вес Животного (до)",
+                                     verbose_name="Максимальный вес Животного", null=True)
     objects = models.Manager()
 
     def __str__(self):
-        return '%s %s %s' % (self.industry, self.animal_weight, self.animal_age)
-
+        return '%s %s' % (self.industry, self.animal)
 
 
 class Pig(Animal):
@@ -72,8 +121,8 @@ class Pig(Animal):
 
 
 class Birds(Animal):
-    animal_type = models.ForeignKey('AnimalType', on_delete=models.CASCADE, help_text="Выберите Животное",
-                                    verbose_name="Животное", null=True, blank=True)
+    animal_type = models.ForeignKey('BirdsType', on_delete=models.CASCADE, help_text="Выберите тип Птицы",
+                                    verbose_name="Птица", null=True, blank=True)
 
     class Meta:
         verbose_name = "Птица"
@@ -103,28 +152,12 @@ class TypeOfIndustry(models.Model):
         return '%s' % (self.name)
 
 
-class AnimalType(models.Model):
-    name = models.CharField(max_length=200, help_text="Введите тип животного", verbose_name="Животное")
+class BirdsType(models.Model):
+    name = models.CharField(max_length=200, help_text="Введите тип птицы", verbose_name="Птица")
     objects = models.Manager()
 
     def __str__(self):
         return '%s' % (self.name)
 
 
-class AnimalWeight(models.Model):
-    min = models.CharField(max_length=10, help_text="Введите вес животного (от)",
-                           verbose_name="Вес животного (от)", default=0)
-    max = models.CharField(max_length=10, help_text="Введите вес животного (до)",
-                           verbose_name="Вес животного (до)", default=0)
-    objects = models.Manager()
 
-    def __str__(self):
-        return '%s %s' % (self.min, self.max)
-
-
-class Age(models.Model):
-    name = models.CharField(max_length=200, help_text="Введите возраст животного", verbose_name="Возраст животного")
-    objects = models.Manager()
-
-    def __str__(self):
-        return '%s ' % (self.name)
