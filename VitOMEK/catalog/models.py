@@ -20,8 +20,8 @@ class Good(models.Model):
                                 default=0)
     summary = models.TextField(max_length=1000, help_text="Введите описание товара",
                                verbose_name="Описание товара", null=True, blank=True)
-    blanding = models.TextField(max_length=1000, help_text="Введите описание по смешиванию",
-                               verbose_name="Описание по смешиванию", null=True, blank=True)
+    blending = models.TextField(max_length=1000, help_text="Введите описание по смешиванию",
+                                verbose_name="Описание по смешиванию", null=True, blank=True)
 
     user = models.ForeignKey(User, verbose_name='Пользователь', on_delete=models.CASCADE)
 
@@ -101,8 +101,8 @@ class Country(models.Model):
 class Animal(models.Model):
     industry = models.ForeignKey('Industry', on_delete=models.CASCADE, help_text="Выберите Отрасль",
                                  verbose_name="Отрасль", null=True)
-    animal = models.CharField(max_length=200, help_text="Введите описание Животного",
-                              verbose_name="Описание Животного", null=True, blank=True)
+    animal_description = models.CharField(max_length=200, help_text="Введите описание Животного",
+                                          verbose_name="Описание Животного", null=True, blank=True)
 
     animal_age_min = models.IntegerField(help_text="Введите минимальный Возраст",
                                  verbose_name="Минимальный Возраст", null=True)
@@ -115,7 +115,7 @@ class Animal(models.Model):
     objects = models.Manager()
 
     def __str__(self):
-        return '%s %s' % (self.industry, self.animal)
+        return '%s %s' % (self.industry, self.animal_description)
 
 
 class Pig(Animal):

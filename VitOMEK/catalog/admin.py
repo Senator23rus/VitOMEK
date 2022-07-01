@@ -17,8 +17,8 @@ admin.site.register(BirdsType)
 
 @admin.register(Good)
 class GoodAdmin(admin.ModelAdmin):
-    list_display = ('name', 'product', 'animal', 'price', 'user', 'date')
-    fields = ('name', 'product', 'animal', 'price', 'user', 'date')
+    list_display = ('name', 'product', 'animal', 'price', 'user', 'date', 'summary', 'blending')
+    fields = ('name', 'product', 'animal', 'price', 'user', 'date', 'summary', 'blending')
     list_filter = ('price', 'date', 'animal', 'date')
 @admin.register(Premix)
 class PremixAdmin(admin.ModelAdmin):
@@ -46,18 +46,20 @@ class BVMKAdmin(admin.ModelAdmin):
 
 @admin.register(Pig)
 class PigAdmin(admin.ModelAdmin):
-    list_display = ('industry', 'animal_age_min', 'animal_age_max', 'weight_min', 'weight_max', 'animal')
-    fields = ('industry', 'animal_age_min', 'animal_age_max', 'weight_min', 'weight_max', 'animal')
-    list_filter = ('animal', )
+    list_display = ('industry', 'animal_age_min', 'animal_age_max', 'weight_min', 'weight_max', 'animal_description')
+    fields = ('industry', 'animal_age_min', 'animal_age_max', 'weight_min', 'weight_max', 'animal_description')
+    list_filter = ('animal_description', )
 
 @admin.register(Birds)
 class BirdsAdmin(admin.ModelAdmin):
-    list_display = ('industry', 'animal_age_min', 'animal_age_max', 'weight_min', 'weight_max', 'animal_type', 'animal')
-    fields = ('industry', 'animal_age_min', 'animal_age_max', 'weight_min', 'weight_max', 'animal_type', 'animal')
-    list_filter = ('animal', 'animal_type')
+    list_display = ('industry', 'animal_age_min', 'animal_age_max', 'weight_min', 'weight_max',
+                    'animal_type', 'animal_description')
+    fields = ('industry', 'animal_age_min', 'animal_age_max', 'weight_min', 'weight_max', 'animal_type',
+              'animal_description')
+    list_filter = ('animal_description', 'animal_type')
 
 @admin.register(Cows)
 class CowsAdmin(admin.ModelAdmin):
-    list_display = ('industry', 'animal_age_min', 'animal_age_max', 'weight_min', 'weight_max', 'animal')
-    fields = ('industry', 'animal_age_min', 'animal_age_max', 'weight_min', 'weight_max', 'animal')
-    list_filter = ('animal', )
+    list_display = ('industry', 'animal_age_min', 'animal_age_max', 'weight_min', 'weight_max', 'animal_description')
+    fields = ('industry', 'animal_age_min', 'animal_age_max', 'weight_min', 'weight_max', 'animal_description')
+    list_filter = ('animal_description', )
