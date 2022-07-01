@@ -18,6 +18,10 @@ class Good(models.Model):
 
     price = models.DecimalField(decimal_places=2, max_digits=10, help_text="Введите цену ", verbose_name="Цена",
                                 default=0)
+    summary = models.TextField(max_length=1000, help_text="Введите описание товара",
+                               verbose_name="Описание товара", null=True, blank=True)
+    blanding = models.TextField(max_length=1000, help_text="Введите описание по смешиванию",
+                               verbose_name="Описание по смешиванию", null=True, blank=True)
 
     user = models.ForeignKey(User, verbose_name='Пользователь', on_delete=models.CASCADE)
 
