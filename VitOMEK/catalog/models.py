@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 class Good(models.Model):
     name = models.CharField(max_length=200, help_text="Введите название Товара", verbose_name="Название Товара", default=0)
 
-    image = models.IntegerField(help_text="Введите картинку продукта", verbose_name="Картинка", default=0)
+    image = models.ImageField(help_text="Введите картинку продукта", verbose_name="Картинка", default=0)
 
     product = models.ForeignKey('Product', on_delete=models.CASCADE, help_text="Выберете продукт",
                                 verbose_name="Продукт", null=True)

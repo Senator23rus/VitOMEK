@@ -18,7 +18,7 @@ admin.site.register(BirdsType)
 @admin.register(Good)
 class GoodAdmin(admin.ModelAdmin):
     list_display = ('name', 'product', 'animal', 'price', 'user', 'date', 'summary', 'blending')
-    fields = ('name', 'product', 'animal', 'price', 'user', 'date', 'summary', 'blending')
+    fields = ('name', 'product', 'image', 'animal', 'price', 'user', 'date', 'summary', 'blending')
     list_filter = ('price', 'date', 'animal', 'date')
 @admin.register(Premix)
 class PremixAdmin(admin.ModelAdmin):
